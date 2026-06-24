@@ -16,7 +16,7 @@ def ask(rows: list[SalesRow], question: str) -> str:
     global model
     if model is None:
         genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash")
     context = build_context(rows)
     prompt = (
         "You are a data analyst. Below is a sales dataset in CSV format.\n\n"
