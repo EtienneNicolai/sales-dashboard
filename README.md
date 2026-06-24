@@ -1,16 +1,16 @@
-# Sales Dashboard
+﻿# Sales Dashboard
 
 A full-stack web app that ingests a CSV of sales data, runs automated analysis, and lets you ask plain-English questions about the data using AI.
 
 ## Features
 
 - CSV upload and validation
-- KPI cards — total revenue, total orders, average order value, best month, best product
-- Line chart — revenue trend over time
-- Bar chart — top products by revenue
-- Donut chart — revenue split by region
-- Anomaly detection — flags unusual months automatically
-- AI chat — ask plain-English questions about your data
+- KPI cards - total revenue, total orders, average order value, best month, best product
+- Line chart - revenue trend over time
+- Bar chart - top products by revenue
+- Donut chart - revenue split by region
+- Anomaly detection - flags unusual months automatically
+- AI chat - ask plain-English questions about your data
 - CSV export
 
 ## Requirements
@@ -57,7 +57,7 @@ Open `.env` and replace `your-gemini-key-here` with your real API key.
 
 **5. Start the app**
 
-Double-click `start.bat` — opens the backend and frontend in separate windows automatically.
+Double-click `start.bat` - opens the backend and frontend in separate windows automatically.
 
 Then open [http://localhost:5173](http://localhost:5173) in your browser.
 
@@ -77,7 +77,7 @@ Your CSV must contain exactly these seven columns:
 
 Column names must match exactly (case-sensitive). Rows where `revenue` is zero or missing are ignored.
 
-A sample file is included at `data/sample.csv` — use it to try the app before uploading your own data.
+A sample file is included at `data/sample.csv` - use it to try the app before uploading your own data.
 
 ## Architecture
 

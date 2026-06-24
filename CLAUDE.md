@@ -1,4 +1,4 @@
-# Sales Dashboard
+﻿# Sales Dashboard
 
 ## What This Project Does
 A full-stack web app that ingests a CSV of sales data, runs automated analysis (trends, KPIs, anomalies), visualises results in a React UI, and lets users ask plain-English questions about their data via Claude AI.
@@ -12,7 +12,7 @@ A full-stack web app that ingests a CSV of sales data, runs automated analysis (
 | Frontend | React + Vite | Clean, fast dev experience |
 | Charts | Recharts | Easy React charting |
 
-## ⚠️ Before Writing Any Code — Environment Check
+## ⚠️ Before Writing Any Code - Environment Check
 Run `check.py` from the project root first. All lines must print ✓:
 ```powershell
 $env:PYTHONPATH = "$PSScriptRoot;$PSScriptRoot\backend\lib"
@@ -20,7 +20,7 @@ python check.py
 ```
 
 ## ⚠️ Package Installation Rules
-- All packages are installed **once** in the setup phase — never by individual sessions
+- All packages are installed **once** in the setup phase - never by individual sessions
 - Backend packages: `python -m pip install --target=backend\lib -r requirements.txt`
 - Frontend packages: `cd frontend && npm install`
 - PYTHONPATH must include **both** the project root (so `backend.src.*` resolves) and `backend\lib` (installed packages)
@@ -57,20 +57,20 @@ Do not change either contract without updating this file and all affected guidel
 api → analysis → data
 api → ai
 ```
-No circular imports. `ai` only imports `anthropic` and the session store — it does not import from `analysis`.
+No circular imports. `ai` only imports `anthropic` and the session store - it does not import from `analysis`.
 
 ## Integration Order
 1. Session 1 finishes → `SalesRow` model exists → all backend sessions can code against it
 2. Sessions 2 and 3 build independently using mock `SalesRow` lists in tests
-3. Session 3 stubs out the `/chat` endpoint (returns placeholder) — Session 5 replaces the stub
+3. Session 3 stubs out the `/chat` endpoint (returns placeholder) - Session 5 replaces the stub
 4. Session 4 can build the full frontend against the API contracts without waiting for Session 5
 5. Session 5 replaces the chat stub and the frontend chat panel works immediately
 
 ## Running the Project
-Double-click `start.bat` in File Explorer — no terminal needed.
+Double-click `start.bat` in File Explorer - no terminal needed.
 
 Opens the backend in one window and the frontend in another.
-Requires `.env` with `GEMINI_API_KEY` set — copy `.env.example` to get started.
+Requires `.env` with `GEMINI_API_KEY` set - copy `.env.example` to get started.
 
 Frontend: http://localhost:5173  
 Backend:  http://localhost:8000

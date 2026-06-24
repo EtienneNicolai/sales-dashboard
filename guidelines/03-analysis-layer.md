@@ -1,4 +1,4 @@
-# Guideline 03 — Analysis Layer (Session 2)
+﻿# Guideline 03 - Analysis Layer (Session 2)
 
 ## Scope
 This session owns `backend/src/analysis/` only.
@@ -17,7 +17,7 @@ def compute_kpis(rows: list[SalesRow]) -> dict:
     #   "total_revenue": float,
     #   "total_orders": int,        # len(rows)
     #   "avg_order_value": float,   # total_revenue / total_orders
-    #   "best_month": str,          # "2024-03" — month with highest revenue
+    #   "best_month": str,          # "2024-03" - month with highest revenue
     #   "best_product": str         # product name with highest total revenue
     # }
 
@@ -37,7 +37,7 @@ def by_region(rows: list[SalesRow]) -> list[dict]:
     # Sorted descending by revenue
 ```
 
-Use Python's `collections.defaultdict` or convert to a pandas DataFrame internally — either is fine.
+Use Python's `collections.defaultdict` or convert to a pandas DataFrame internally - either is fine.
 If `rows` is empty, all functions should return sensible empty values (empty list or zeroed dict) rather than raising.
 
 ### 2. `backend/src/analysis/anomalies.py`
@@ -56,7 +56,7 @@ def detect_anomalies(rows: list[SalesRow], threshold: float = 1.5) -> list[dict]
 The `note` field should be human-readable: `"Revenue spike: 93% above monthly average"` or `"Revenue drop: 61% below monthly average"`.
 
 ### 3. `backend/src/analysis/report.py`
-Compose a single report dict from all the above — this is what the API layer calls.
+Compose a single report dict from all the above - this is what the API layer calls.
 
 ```python
 from backend.src.analysis.stats import compute_kpis, monthly_trend, top_products, by_region

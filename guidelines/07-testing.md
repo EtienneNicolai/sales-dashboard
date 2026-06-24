@@ -1,4 +1,4 @@
-# Guideline 07 — Testing
+﻿# Guideline 07 - Testing
 
 ## Overview
 Each session writes tests for the layer it owns. All tests live in `backend/tests/`.
@@ -10,7 +10,7 @@ pytest backend/tests/ -v
 
 ---
 
-## Shared Fixtures — `backend/tests/conftest.py`
+## Shared Fixtures - `backend/tests/conftest.py`
 Session 1 creates this. All sessions import from here.
 
 ```python
@@ -50,7 +50,7 @@ def bad_csv_bytes():
 
 ---
 
-## Session 1 Tests — `backend/tests/test_parser.py`
+## Session 1 Tests - `backend/tests/test_parser.py`
 
 ```python
 import pytest
@@ -92,7 +92,7 @@ def test_parse_csv_drops_zero_revenue_rows():
 
 ---
 
-## Session 2 Tests — `backend/tests/test_analysis.py`
+## Session 2 Tests - `backend/tests/test_analysis.py`
 
 ```python
 from backend.src.analysis.stats import compute_kpis, monthly_trend, top_products, by_region
@@ -162,7 +162,7 @@ def test_compute_kpis_empty_rows():
 
 ---
 
-## Session 3 Tests — `backend/tests/test_api.py`
+## Session 3 Tests - `backend/tests/test_api.py`
 
 ```python
 import pytest
@@ -241,7 +241,7 @@ async def test_chat_stub_returns_answer(valid_csv):
 
 ---
 
-## Session 5 Tests — `backend/tests/test_ai.py`
+## Session 5 Tests - `backend/tests/test_ai.py`
 
 ```python
 from unittest.mock import MagicMock, patch

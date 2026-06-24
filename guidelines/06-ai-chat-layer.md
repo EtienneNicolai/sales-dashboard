@@ -1,10 +1,10 @@
-# Guideline 06 — AI Chat Layer (Session 5)
+﻿# Guideline 06 - AI Chat Layer (Session 5)
 
 ## Scope
 This session owns `backend/src/ai/` and replaces the stub in `backend/src/api/routes/chat.py`.
 
 ## Prerequisite
-Session 3 must be complete — the chat route stub must already exist before this session edits it.
+Session 3 must be complete - the chat route stub must already exist before this session edits it.
 
 ## What to Build
 
@@ -46,10 +46,10 @@ def ask(rows: list[SalesRow], question: str) -> str:
 ```
 
 **Why send the full CSV text?**
-For a controlled sample dataset (under 500 rows), the full data fits comfortably within Claude's context window. This is the simplest approach that gives Claude access to all the data it needs to answer specific questions accurately. A production system would use text-to-code execution (Claude generates pandas queries, the server runs them) — but that is out of scope here.
+For a controlled sample dataset (under 500 rows), the full data fits comfortably within Claude's context window. This is the simplest approach that gives Claude access to all the data it needs to answer specific questions accurately. A production system would use text-to-code execution (Claude generates pandas queries, the server runs them) - but that is out of scope here.
 
 ### 2. Replace the stub in `backend/src/api/routes/chat.py`
-Replace only the route body — keep the router, imports, and `ChatRequest` model as Session 3 wrote them. Add the import and swap the return:
+Replace only the route body - keep the router, imports, and `ChatRequest` model as Session 3 wrote them. Add the import and swap the return:
 
 ```python
 from backend.src.ai.chat import ask   # add this import
@@ -71,16 +71,16 @@ $env:ANTHROPIC_API_KEY = "sk-ant-..."
 Or add it to a `.env` file and load it with `python-dotenv` in `main.py`.
 
 ## Key Constraints
-- Use model `claude-sonnet-4-6` — it's capable and cost-effective for Q&A tasks
-- `max_tokens=1024` is sufficient for a data analysis answer — do not set it higher
-- The `Anthropic` client reads `ANTHROPIC_API_KEY` from the environment — never hardcode the key
-- If `ANTHROPIC_API_KEY` is missing, the server will raise a `KeyError` on startup — that's intentional, it's better than a silent failure at request time
-- Do not import from `backend/src/analysis/` — the AI layer works directly from raw rows, not the report dict
+- Use model `claude-sonnet-4-6` - it's capable and cost-effective for Q&A tasks
+- `max_tokens=1024` is sufficient for a data analysis answer - do not set it higher
+- The `Anthropic` client reads `ANTHROPIC_API_KEY` from the environment - never hardcode the key
+- If `ANTHROPIC_API_KEY` is missing, the server will raise a `KeyError` on startup - that's intentional, it's better than a silent failure at request time
+- Do not import from `backend/src/analysis/` - the AI layer works directly from raw rows, not the report dict
 
 ## Tests to Write
 See `guidelines/07-testing.md` for full test code. Your test file is `backend/tests/test_ai.py`.
 
-Uses `unittest.mock.patch` to replace the Anthropic client — no real API calls in tests.
+Uses `unittest.mock.patch` to replace the Anthropic client - no real API calls in tests.
 
 Covers: `build_context` produces valid CSV text, `ask` calls `client.messages.create` once with the question in the prompt, mock response is returned correctly.
 
@@ -90,4 +90,4 @@ Covers: `build_context` produces valid CSV text, `ask` calls `client.messages.cr
 - `backend/tests/test_ai.py`
 
 ## Files to Edit
-- `backend/src/api/routes/chat.py` — replace stub body only
+- `backend/src/api/routes/chat.py` - replace stub body only

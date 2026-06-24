@@ -1,4 +1,4 @@
-# Guideline 01 — Project Overview & Shared Contracts
+﻿# Guideline 01 - Project Overview & Shared Contracts
 
 ## Goal
 Build a sales dashboard web app that:
@@ -27,7 +27,7 @@ The sample CSV and all demo data must use these columns exactly:
 The parser validates that all seven columns are present. If any are missing it returns a 400 error with a clear message.
 
 ## Shared Data Model
-Defined in `backend/src/data/models.py`. All backend sessions import `SalesRow` from here — do not redefine it.
+Defined in `backend/src/data/models.py`. All backend sessions import `SalesRow` from here - do not redefine it.
 
 ```python
 from dataclasses import dataclass
@@ -117,9 +117,9 @@ Columns match the original CSV schema.
 
 ## Session Boundaries
 - **Session 1** owns: `SalesRow` model, CSV parser, column validation
-- **Session 2** owns: all stat computations — KPIs, monthly trend, top products, by-region, anomaly detection
+- **Session 2** owns: all stat computations - KPIs, monthly trend, top products, by-region, anomaly detection
 - **Session 3** owns: FastAPI app setup, all four route files, CORS, session store, `/chat` stub
-- **Session 4** owns: entire React frontend — upload, KPI cards, charts, chat panel UI
+- **Session 4** owns: entire React frontend - upload, KPI cards, charts, chat panel UI
 - **Session 5** owns: `backend/src/ai/chat.py`, replaces the chat stub in the API route
 
 Sessions must not import from each other in a circular way.
@@ -138,7 +138,7 @@ Backend import chain: `api → analysis → data`, `api → ai`
 | `pytest` | `import pytest` | `python -c "import pytest; print('OK')"` |
 | `httpx` | `import httpx` | `python -c "import httpx; print('OK')"` |
 
-⚠️ **`python-multipart` name trap**: the PyPI package is `python-multipart` but it does NOT import as `import python_multipart`. It imports from the `multipart` namespace. If `from multipart.multipart import parse_options_header` fails after install, a conflicting bare `multipart` package may be installed — uninstall it and reinstall `python-multipart`.
+⚠️ **`python-multipart` name trap**: the PyPI package is `python-multipart` but it does NOT import as `import python_multipart`. It imports from the `multipart` namespace. If `from multipart.multipart import parse_options_header` fails after install, a conflicting bare `multipart` package may be installed - uninstall it and reinstall `python-multipart`.
 
 ⚠️ **`anthropic` name trap**: there are stale third-party packages also named `anthropic` on PyPI from before the official SDK existed. The official SDK is published by Anthropic and provides `from anthropic import Anthropic`. If `Anthropic` is not found after install, the wrong package is installed. Uninstall and reinstall from the official source.
 
@@ -149,7 +149,7 @@ Backend import chain: `api → analysis → data`, `api → ai`
 | `recharts` | Bar and line charts |
 | `axios` | HTTP calls to backend API |
 
-## Phase 0 — Setup (must complete before any session writes code)
+## Phase 0 - Setup (must complete before any session writes code)
 ```powershell
 # Backend
 python -m pip install --target=backend\lib -r requirements.txt

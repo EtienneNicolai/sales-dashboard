@@ -1,4 +1,4 @@
-# Guideline 04 — API Layer (Session 3)
+﻿# Guideline 04 - API Layer (Session 3)
 
 ## Scope
 This session owns `backend/src/api/` only.
@@ -23,7 +23,7 @@ def get_session(session_id: str) -> list[SalesRow] | None:
     return _store.get(session_id)
 ```
 
-No persistence — data lives only while the server is running. This is intentional for a portfolio project.
+No persistence - data lives only while the server is running. This is intentional for a portfolio project.
 
 ### 2. `backend/src/api/routes/upload.py`
 Handle CSV upload, validate, parse, and return session ID.
@@ -91,7 +91,7 @@ def chat(session_id: str, body: ChatRequest):
     rows = get_session(session_id)
     if rows is None:
         raise HTTPException(status_code=404, detail="Session not found")
-    # STUB — Session 5 replaces this
+    # STUB - Session 5 replaces this
     return {"answer": "AI chat is not yet connected."}
 ```
 
@@ -147,14 +147,14 @@ app.include_router(export.router)
 ```
 
 ## Key Constraints
-- CORS must allow `http://localhost:5173` — the frontend will not connect otherwise
-- File size limit of 10 MB in the upload route — enforce it before calling the parser
+- CORS must allow `http://localhost:5173` - the frontend will not connect otherwise
+- File size limit of 10 MB in the upload route - enforce it before calling the parser
 - All `ValueError` from the parser layer must be caught and re-raised as `HTTPException(400)`
 - The `/chat` stub must return a valid JSON response so Session 4 can build the UI against it
 
 ## Tests to Write
 See `guidelines/07-testing.md` for full test code. Your test file is `backend/tests/test_api.py`.
-Uses `httpx.AsyncClient` with FastAPI's test client — no real server needed.
+Uses `httpx.AsyncClient` with FastAPI's test client - no real server needed.
 
 Covers: upload valid CSV, upload non-CSV rejected, upload missing column rejected, stats returns correct shape, export returns CSV content-type, chat stub returns dict with `answer` key.
 

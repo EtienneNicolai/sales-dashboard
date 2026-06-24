@@ -1,15 +1,15 @@
-# Guideline 05 — Frontend Layer (Session 4)
+﻿# Guideline 05 - Frontend Layer (Session 4)
 
 ## Scope
 This session owns `frontend/src/` only.
 
 ## Setup (run once before writing any component code)
-The Vite scaffold is already pre-created — `package.json`, `vite.config.js`, `index.html`, and `src/main.jsx` are all in place. Just install:
+The Vite scaffold is already pre-created - `package.json`, `vite.config.js`, `index.html`, and `src/main.jsx` are all in place. Just install:
 ```powershell
 cd frontend
 npm install
 ```
-`frontend/.env` is also pre-created with `VITE_API_URL=http://localhost:8000`. Do not run `npm create vite@latest` — the scaffold already exists and that command would overwrite it.
+`frontend/.env` is also pre-created with `VITE_API_URL=http://localhost:8000`. Do not run `npm create vite@latest` - the scaffold already exists and that command would overwrite it.
 
 ## What to Build
 
@@ -27,10 +27,10 @@ After a successful upload, immediately fetch `/stats/{session_id}` and store the
 ### 1. `frontend/src/components/Upload.jsx`
 File upload area with a button and drag-and-drop feel.
 
-- `<input type="file" accept=".csv">` — only allow CSV selection
+- `<input type="file" accept=".csv">` - only allow CSV selection
 - On file select: POST to `/upload` as multipart form data using `axios`
 - Show a loading spinner while uploading
-- On success: call `onUploadSuccess(session_id)` prop — App then fetches `/stats`
+- On success: call `onUploadSuccess(session_id)` prop - App then fetches `/stats`
 - On error: display the `detail` field from the API error response
 - Disable the input while loading
 
@@ -42,7 +42,7 @@ Row of four cards showing headline numbers.
 Cards to show (values come from `stats.kpis`):
 | Card | Value |
 |---|---|
-| Total Revenue | `$125,000.00` — format with `toLocaleString('en-US', {style:'currency',currency:'USD'})` |
+| Total Revenue | `$125,000.00` - format with `toLocaleString('en-US', {style:'currency',currency:'USD'})` |
 | Total Orders | `500` |
 | Avg Order Value | `$250.00` |
 | Best Month | `2024-03` |
@@ -53,16 +53,16 @@ Props: `kpis: object`
 ### 3. `frontend/src/components/Charts.jsx`
 Two charts side by side (or stacked on narrow screens).
 
-**Revenue by Month — LineChart (Recharts)**
-- Data: `stats.monthly_trend` — `[{month, revenue}]`
+**Revenue by Month - LineChart (Recharts)**
+- Data: `stats.monthly_trend` - `[{month, revenue}]`
 - X axis: `month`, Y axis: `revenue`
 - Show a `<Tooltip>` and `<CartesianGrid>`
 
-**Top Products — BarChart (Recharts)**
-- Data: `stats.top_products` — `[{product, revenue}]`
+**Top Products - BarChart (Recharts)**
+- Data: `stats.top_products` - `[{product, revenue}]`
 - X axis: `product`, Y axis: `revenue`
 
-**Anomalies — plain text list below the charts**
+**Anomalies - plain text list below the charts**
 - If `stats.anomalies.length > 0`, render a warning box with each anomaly's `month` and `note`
 - If empty, render nothing
 
@@ -100,8 +100,8 @@ export default function RegionChart({ byRegion }) {
 }
 ```
 
-- Data: `stats.by_region` — `[{region, revenue}]`
-- `innerRadius` makes it a donut (ring) rather than a filled pie — easier to read at small sizes
+- Data: `stats.by_region` - `[{region, revenue}]`
+- `innerRadius` makes it a donut (ring) rather than a filled pie - easier to read at small sizes
 - The four `COLORS` map to the four regions in the sample data
 
 Props: `byRegion: array`
@@ -127,7 +127,7 @@ Props: `sessionId: string`
 
 ### 6. `frontend/src/App.jsx`
 Layout: renders components in this order:
-1. `<Upload>` always visible at top — even after data is loaded (allows re-upload)
+1. `<Upload>` always visible at top - even after data is loaded (allows re-upload)
 2. If `stats` is loaded: `<KPICards kpis={stats.kpis} />`
 3. If `stats` is loaded: `<Charts stats={stats} />` (line + bar + anomalies)
 4. If `stats` is loaded: `<RegionChart byRegion={stats.by_region} />` (donut)
@@ -158,9 +158,9 @@ const handleExport = async () => {
 
 ## Key Constraints
 - Backend must be running on `http://localhost:8000` for the app to work
-- The chat panel works against the stub response from Session 3 — it will show "AI chat is not yet connected." until Session 5 is done
-- No TypeScript — plain JSX throughout
-- No CSS frameworks — use inline styles or a single `App.css` file
+- The chat panel works against the stub response from Session 3 - it will show "AI chat is not yet connected." until Session 5 is done
+- No TypeScript - plain JSX throughout
+- No CSS frameworks - use inline styles or a single `App.css` file
 
 ## Files to Create
 - `frontend/src/App.jsx`
