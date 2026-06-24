@@ -67,11 +67,10 @@ No circular imports. `ai` only imports `anthropic` and the session store — it 
 5. Session 5 replaces the chat stub and the frontend chat panel works immediately
 
 ## Running the Project
-```powershell
-.\start.ps1
-```
-Opens the backend in a new window and the frontend in the current one.
-Requires `.env` with `ANTHROPIC_API_KEY` set — copy `.env.example` to get started.
+Double-click `start.bat` in File Explorer — no terminal needed.
+
+Opens the backend in one window and the frontend in another.
+Requires `.env` with `GEMINI_API_KEY` set — copy `.env.example` to get started.
 
 Frontend: http://localhost:5173  
 Backend:  http://localhost:8000
