@@ -5,7 +5,7 @@ checks = [
     ("uvicorn",           "import uvicorn"),
     ("pandas",            "import pandas as pd"),
     ("python-multipart",  "from multipart.multipart import parse_options_header"),
-    ("anthropic",         "from anthropic import Anthropic"),
+    ("google-generativeai", "import google.generativeai as genai"),
     ("pytest",            "import pytest"),
     ("pytest-asyncio",    "import pytest_asyncio"),
     ("httpx",             "import httpx"),

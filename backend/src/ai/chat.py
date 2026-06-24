@@ -1,8 +1,8 @@
-from anthropic import Anthropic
-from backend.src.data.models import SalesRow
+import google.generativeai as genai
 import os
+from backend.src.data.models import SalesRow
 
-client = None
+model = None
 
 
 def build_context(rows: list[SalesRow]) -> str:
@@ -13,23 +13,16 @@ def build_context(rows: list[SalesRow]) -> str:
 
 
 def ask(rows: list[SalesRow], question: str) -> str:
-    global client
-    if client is None:
-        client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    global model
+    if model is None:
+        genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+        model = genai.GenerativeModel("gemini-1.5-flash")
     context = build_context(rows)
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=1024,
-        messages=[
-            {
-                "role": "user",
-                "content": (
-                    "You are a data analyst. Below is a sales dataset in CSV format.\n\n"
-                    f"{context}\n\n"
-                    f"Question: {question}\n\n"
-                    "Answer concisely using only the data above. Do not invent figures."
-                ),
-            }
-        ],
+    prompt = (
+        "You are a data analyst. Below is a sales dataset in CSV format.\n\n"
+        f"{context}\n\n"
+        f"Question: {question}\n\n"
+        "Answer concisely using only the data above. Do not invent figures."
     )
-    return message.content[0].text
+    response = model.generate_content(prompt)
+    return response.text

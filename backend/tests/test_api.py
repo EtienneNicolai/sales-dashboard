@@ -74,9 +74,9 @@ async def test_export_returns_csv(valid_csv):
 @pytest.mark.asyncio
 async def test_chat_stub_returns_answer(valid_csv):
     mock_response = MagicMock()
-    mock_response.content = [MagicMock(text="Widget A had the highest revenue.")]
-    with patch("backend.src.ai.chat.client") as mock_client:
-        mock_client.messages.create.return_value = mock_response
+    mock_response.text = "Widget A had the highest revenue."
+    with patch("backend.src.ai.chat.model") as mock_model:
+        mock_model.generate_content.return_value = mock_response
         async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
             upload_res = await client.post("/upload", files={"file": ("sales.csv", valid_csv, "text/csv")})
             session_id = upload_res.json()["session_id"]
