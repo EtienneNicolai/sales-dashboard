@@ -66,22 +66,15 @@ No circular imports. `ai` only imports `anthropic` and the session store — it 
 4. Session 4 can build the full frontend against the API contracts without waiting for Session 5
 5. Session 5 replaces the chat stub and the frontend chat panel works immediately
 
-## Running the Backend
+## Running the Project
 ```powershell
-.\run.ps1
-# or manually:
-$env:PYTHONPATH = "C:\Users\Etien\Documents\Projects\sales-dashboard;C:\Users\Etien\Documents\Projects\sales-dashboard\backend\lib"
-$env:ANTHROPIC_API_KEY = "your-key-here"
-uvicorn backend.src.api.main:app --reload --port 8000
+.\start.ps1
 ```
+Opens the backend in a new window and the frontend in the current one.
+Requires `.env` with `ANTHROPIC_API_KEY` set — copy `.env.example` to get started.
 
-## Running the Frontend
-```powershell
-cd frontend
-npm run dev
-# opens at http://localhost:5173
-# backend must be running on http://localhost:8000
-```
+Frontend: http://localhost:5173  
+Backend:  http://localhost:8000
 
 ## Running Backend Tests
 ```powershell
