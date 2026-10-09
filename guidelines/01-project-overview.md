@@ -8,7 +8,7 @@ Build a sales dashboard web app that:
 4. Computes monthly revenue trend and top-product breakdown
 5. Detects simple anomalies (revenue spikes/drops)
 6. Returns all results as JSON to the frontend for chart rendering
-7. Accepts plain-English questions → sends question + data context to Claude → returns AI answer
+7. Accepts plain-English questions → sends question + data context to Gemini → returns AI answer
 8. Offers a CSV export of the processed data
 
 ## Expected CSV Schema
@@ -134,13 +134,11 @@ Backend import chain: `api → analysis → data`, `api → ai`
 | `uvicorn` | `import uvicorn` | `python -c "import uvicorn; print('OK')"` |
 | `pandas` | `import pandas as pd` | `python -c "import pandas; print('OK')"` |
 | `python-multipart` | `from multipart.multipart import parse_options_header` | `python -c "from multipart.multipart import parse_options_header; print('OK')"` |
-| `anthropic` | `from anthropic import Anthropic` | `python -c "from anthropic import Anthropic; print('OK')"` |
+| `google-generativeai` | `import google.generativeai as genai` | `python -c "import google.generativeai; print('OK')"` |
 | `pytest` | `import pytest` | `python -c "import pytest; print('OK')"` |
 | `httpx` | `import httpx` | `python -c "import httpx; print('OK')"` |
 
 ⚠️ **`python-multipart` name trap**: the PyPI package is `python-multipart` but it does NOT import as `import python_multipart`. It imports from the `multipart` namespace. If `from multipart.multipart import parse_options_header` fails after install, a conflicting bare `multipart` package may be installed - uninstall it and reinstall `python-multipart`.
-
-⚠️ **`anthropic` name trap**: there are stale third-party packages also named `anthropic` on PyPI from before the official SDK existed. The official SDK is published by Anthropic and provides `from anthropic import Anthropic`. If `Anthropic` is not found after install, the wrong package is installed. Uninstall and reinstall from the official source.
 
 ### Frontend (`frontend/package.json`)
 | Package | Used for |
